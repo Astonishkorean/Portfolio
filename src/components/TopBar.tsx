@@ -36,7 +36,7 @@ export const TopBar: React.FC<TopBarProps> = ({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-8 px-3.5 backdrop-blur-md bg-black/40 border-b border-white/10 text-white/90 text-xs flex items-center justify-between select-none">
+    <header className="fixed top-0 left-0 right-0 z-30 h-8 px-3.5 backdrop-blur-md bg-black/40 border-b border-white/10 text-white/90 text-xs flex items-center justify-between select-none">
       {/* Left items */}
       <div className="flex items-center gap-4">
         <div 

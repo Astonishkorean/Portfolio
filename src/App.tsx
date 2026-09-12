@@ -27,7 +27,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 10
+      zIndex: 50
     },
     direction: {
       id: 'direction',
@@ -36,7 +36,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 11
+      zIndex: 51
     },
     credits: {
       id: 'credits',
@@ -45,7 +45,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 12
+      zIndex: 52
     },
     mentoring: {
       id: 'mentoring',
@@ -54,7 +54,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 13
+      zIndex: 53
     },
     contact: {
       id: 'contact',
@@ -63,7 +63,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 14
+      zIndex: 54
     },
     player: {
       id: 'player',
@@ -72,7 +72,7 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 15
+      zIndex: 55
     },
     release: {
       id: 'release',
@@ -81,12 +81,12 @@ export default function App() {
       isOpen: false,
       isMinimized: false,
       position: { x: 0, y: 0 },
-      zIndex: 20,
+      zIndex: 60,
       data: OFFICIAL_RELEASES[0]
     }
   });
 
-  const [topZIndex, setTopZIndex] = useState(25);
+  const [topZIndex, setTopZIndex] = useState(65);
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTrackId, setActiveTrackId] = useState('bftl');
   const [isMobileFrame, setIsMobileFrame] = useState(false);
