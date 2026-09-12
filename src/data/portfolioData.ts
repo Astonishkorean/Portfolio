@@ -2,20 +2,24 @@ import { OfficialRelease, SoundDirectionItem, AdditionalCredit, MentoringItem } 
 
 // Asset paths
 import bgHero from '../assets/images/asik_gray_bg_1789230338466.jpg';
-import avatarImg from '../assets/images/asik_avatar_1789225354801.jpg';
-import bftlCover from '../assets/images/asik_bftl_1789225294343.jpg';
-import youthCover from '../assets/images/asik_youth_art_1789229385846.jpg';
-import dearMyCover from '../assets/images/asik_dearmy_1789229333458.jpg';
-import mamdaeroCover from '../assets/images/asik_mamdaero_1789229352065.jpg';
-import somebodyCover from '../assets/images/asik_somebody_1789229370340.jpg';
-import onlyYouCover from '../assets/images/asik_onlyyou_1789225325970.jpg';
-import starryNightCover from '../assets/images/asik_starrynight_1789225340292.jpg';
-import dolbyStudioImg from '../assets/images/asik_dolby_1789225369590.jpg';
+import avatarImg from '../assets/images/asik_profile_custom.jpeg';
+import bftlCover from '../assets/images/asik_bftl_custom.jpg';
+import youthCover from '../assets/images/asik_youth_custom.jpg';
+import dearMyCover from '../assets/images/asik_dearmy_custom.jpg';
+import mamdaeroCover from '../assets/images/asik_mamdaero_custom.jpg';
+import somebodyCover from '../assets/images/asik_somebody_custom.jpg';
+import onlyYouCover from '../assets/images/asik_onlyyou_custom.jpg';
+import starryNightCover from '../assets/images/asik_starrynight_custom.jpg';
+import dolbyStudioImg from '../assets/images/dolby_custom.png';
 import editorialCover from '../assets/images/asik_editorial_1789225386369.jpg';
 import studioContactImg from '../assets/images/asik_studio_contact_1789225964526.jpg';
 import emailAppIcon from '../assets/images/email_app_icon_1789230760512.jpg';
 import eduAppIcon from '../assets/images/edu_app_icon_1789230772493.jpg';
-import sorrowCover from '../assets/images/sorrow_cover_1789231095404.jpg';
+import sorrowCover from '../assets/images/asik_sorrow_custom.jpg';
+import donCover from '../assets/images/asik_don_custom.jpg';
+import mmsniCover from '../assets/images/asik_mmsni_custom.jpg';
+import cover1224 from '../assets/images/asik_1224_custom.jpg';
+import sleeplessCover from '../assets/images/asik_sleepless_custom.jpg';
 
 export const ASSETS = {
   heroBg: bgHero,
@@ -42,7 +46,9 @@ export const ARTIST_PROFILE = {
       title: 'Dolby Atmos Accelerator at KOREA 참여 엔지니어 선정',
       year: '2024',
       badge: 'Dolby Atmos',
-      description: '차세대 입체 음향 규격인 7.1.4 Dolby Atmos 몰입형 오디오 믹싱 & 마스터링 공식 액셀러레이터 선정 엔지니어'
+      description: '차세대 입체 음향 규격인 7.1.4 Dolby Atmos 몰입형 오디오 믹싱 & 마스터링 공식 액셀러레이터 선정 엔지니어',
+      linkUrl: 'https://www.dolby.com/creator-lab/seoul-music-accelerator/',
+      linkLabel: 'Dolby Seoul Music Accelerator 공식 사이트 바로가기'
     },
     {
       title: '2024 YGPLUS Mixtape ‘Monthly Accelerator Artist’ 선정',
@@ -237,7 +243,7 @@ export const OFFICIAL_RELEASES: OfficialRelease[] = [
     roles: ['작사', '작곡', '편곡', '믹싱', '마스터링'],
     theme: '새벽 감성 (Midnight Thoughts)',
     description: '모두가 잠든 고요한 새벽 4시, 잠들지 못하는 이들의 깊은 상념과 그리움을 섬세한 어쿠스틱 피아노와 앰비언트 리버브로 녹여낸 트랙.',
-    coverImage: starryNightCover,
+    coverImage: sleeplessCover,
     tracks: [
       { title: '01. 잠에 들지 못한 채', duration: '03:38', highlight: true }
     ],
@@ -273,7 +279,7 @@ export const OFFICIAL_RELEASES: OfficialRelease[] = [
     roles: ['작사', '작곡', '편곡', '믹싱', '마스터링'],
     theme: '겨울의 시간 (Winter Midnight)',
     description: '12월 24일 겨울 새벽의 차가운 공기와 그 속에 남아있는 따뜻한 온기를 담아낸 EP.',
-    coverImage: editorialCover,
+    coverImage: cover1224,
     tracks: [
       { title: '01. Grow Up!', duration: '02:45', highlight: true },
       { title: '02. 12:24 AM', duration: '02:45' },
@@ -292,7 +298,7 @@ export const OFFICIAL_RELEASES: OfficialRelease[] = [
     roles: ['작사', '작곡', '편곡', '믹싱', '마스터링'],
     theme: '에너지 & 비트 (Energy & Groove)',
     description: '자신감 넘치는 힙합 그루브와 날렵한 사운드 믹스가 돋보이는 웰메이드 초기 앨범.',
-    coverImage: editorialCover,
+    coverImage: donCover,
     tracks: [
       { title: '01. D.O.N', duration: '03:04', highlight: true },
       { title: '02. Momentum', duration: '02:50' }
@@ -309,7 +315,7 @@ export const OFFICIAL_RELEASES: OfficialRelease[] = [
     roles: ['작사', '작곡', '편곡', '믹싱', '마스터링'],
     theme: '시작과 발자국 (First Footstep)',
     description: 'Asi.K의 독창적인 사운드 여정의 출발점이 된 첫 EP 프로젝트. 날것의 감성과 진정성이 담긴 레코드.',
-    coverImage: editorialCover,
+    coverImage: mmsniCover,
     tracks: [
       { title: '01. Day One', duration: '02:30' },
       { title: '02. Black Mirror', duration: '03:14', highlight: true }
@@ -395,6 +401,38 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
   },
   {
     id: 'c-6',
+    category: 'Mix & Master',
+    artist: 'Owoon',
+    title: 'Bet Me',
+    format: 'Single',
+    year: '2026'
+  },
+  {
+    id: 'c-7',
+    category: 'Mix & Master',
+    artist: 'CO:ZIP (코드집합소)',
+    title: 'Time Out',
+    format: 'Single',
+    year: '2026'
+  },
+  {
+    id: 'c-8',
+    category: 'Mix & Master',
+    artist: '다민이',
+    title: 'Dog or Chick 2.0',
+    format: 'Soundcloud',
+    year: '2022'
+  },
+  {
+    id: 'c-9',
+    category: 'Mix & Master',
+    artist: 'Econo_MIC',
+    title: '타지 (Feat. HOTCHKISS, Asi.K)',
+    format: 'Single',
+    year: '2022'
+  },
+  {
+    id: 'c-10',
     category: 'Mastering',
     artist: '안소미',
     title: '사랑의 컬러링',
