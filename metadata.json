@@ -1,0 +1,8 @@
+{
+  "name": "Remix Asi.K | Music Producer \u0026 Sound Engineer",
+  "description": "김병혁 (Asi.K) - Music Producer, Sound Designer \u0026 Sound Engineer 공식 포트폴리오 웹사이트",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
