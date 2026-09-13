@@ -157,19 +157,23 @@ export const Dock: React.FC<DockProps> = ({
     }
   ];
 
-  // Mobile-only dock (portrait only): 인스타그램 / 유튜브 / 애플뮤직 / 스포티파이
-  if (isMobile && isPortrait) {
+  // Mobile dock (Portrait & Landscape): 인스타그램 / 유튜브 / 애플뮤직 / 스포티파이 4개 채널만 표시
+  if (isMobile) {
     return (
       <nav 
         aria-label="Quick Channels" 
-        className={`${inFrame ? 'absolute' : 'fixed'} bottom-3 left-1/2 -translate-x-1/2 z-40 select-none max-w-[96vw] pointer-events-auto`}
-        style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' }}
+        className={`${inFrame ? 'absolute' : 'fixed'} ${isPortrait ? 'bottom-3' : 'bottom-1.5 sm:bottom-2'} left-1/2 -translate-x-1/2 z-40 select-none max-w-[96vw] pointer-events-auto`}
+        style={{ bottom: isPortrait ? 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' : 'max(0.35rem, env(safe-area-inset-bottom, 0.35rem))' }}
       >
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="flex items-center gap-3 sm:gap-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[30px] liquid-glass-dock shadow-2xl"
+          className={`flex items-center ${
+            isPortrait 
+              ? 'gap-3 sm:gap-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[30px]' 
+              : 'gap-2.5 xs:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-[22px] sm:rounded-[26px]'
+          } liquid-glass-dock shadow-2xl`}
         >
           {mobileChannels.map((channel) => (
             <div key={channel.id} className="relative group">
@@ -177,16 +181,27 @@ export const Dock: React.FC<DockProps> = ({
                 href={channel.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-[52px] h-[52px] xs:w-[54px] xs:h-[54px] sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[22px] transition-all duration-200 active:scale-90 hover:scale-105 ${channel.bgClass} flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_20px_rgba(0,0,0,0.45)]`}
+                className={`${
+                  isPortrait
+                    ? 'w-[52px] h-[52px] xs:w-[54px] xs:h-[54px] sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[22px]'
+                    : 'w-11 h-11 xs:w-12 xs:h-12 sm:w-13 sm:h-13 rounded-[14px] sm:rounded-[16px]'
+                } transition-all duration-200 active:scale-90 hover:scale-105 ${channel.bgClass} flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_20px_rgba(0,0,0,0.45)]`}
                 title={channel.title}
                 aria-label={channel.title}
               >
                 {/* Refractive convex highlight */}
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 pointer-events-none" />
-                <div className="relative z-10 flex items-center justify-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                <div className={`relative z-10 flex items-center justify-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] ${
+                  !isPortrait ? 'scale-80 xs:scale-85' : ''
+                }`}>
                   {channel.icon}
                 </div>
               </a>
+
+              {/* Hover Tooltip in landscape */}
+              <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[10px] font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+                {channel.title}
+              </span>
             </div>
           ))}
         </motion.div>

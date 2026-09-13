@@ -110,11 +110,11 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
 
     return (
       <div 
-        className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-3 sm:pt-6 flex flex-col items-center"
+        className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-2 xs:pt-4 sm:pt-8 flex flex-col items-center justify-start sm:justify-center"
         style={{ paddingBottom: 'max(9.5rem, calc(8.5rem + env(safe-area-inset-bottom, 24px)))' }}
       >
-        {/* Container with 50% widened gap between top app and 2x2 grid */}
-        <div className="my-auto flex flex-col items-center gap-5 sm:gap-7 w-full max-w-[320px] sm:max-w-[360px]">
+        {/* Raised 5-App Cluster: Positioned higher up to leave generous breathing room above bottom dock */}
+        <div className="mt-1 xs:mt-3 sm:my-auto flex flex-col items-center gap-3.5 xs:gap-4.5 sm:gap-6 w-full max-w-[310px] sm:max-w-[360px]">
           {/* Top Hero App: About (Liquid Glass Hero) */}
           <motion.button
             key={mobileTopApp.id}
@@ -124,21 +124,21 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
             onClick={() => handleLaunchApp(mobileTopApp)}
             className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
           >
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-[26px] sm:rounded-[30px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass-hero flex items-center justify-center">
+            <div className="relative w-24 h-24 xs:w-26 xs:h-26 sm:w-30 sm:h-30 rounded-[22px] xs:rounded-[25px] sm:rounded-[28px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass-hero flex items-center justify-center">
               {/* Refractive convex highlight */}
               <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/20 pointer-events-none" />
-              <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 text-amber-300 group-hover:text-amber-200 transition-colors flex items-center justify-center drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+              <div className="relative z-10 w-12 h-12 xs:w-13 xs:h-13 sm:w-15 sm:h-15 text-amber-300 group-hover:text-amber-200 transition-colors flex items-center justify-center drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
                 {mobileTopApp.icon}
               </div>
               <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors pointer-events-none" />
             </div>
-            <span className="mt-2 text-xs sm:text-sm font-semibold text-amber-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)] tracking-tight text-center">
+            <span className="mt-1.5 text-xs sm:text-sm font-semibold text-amber-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)] tracking-tight text-center">
               {mobileTopApp.appName}
             </span>
           </motion.button>
 
-          {/* 4 Apps in 2x2 Square (Sound Engineering, Discography, Mentoring, Contact) with Liquid Glass & 50% widened spacing */}
-          <div className="grid grid-cols-2 gap-y-5 sm:gap-y-6 gap-x-5 sm:gap-x-7 w-full justify-items-center">
+          {/* 4 Apps in 2x2 Square (Sound Engineering, Discography, Mentoring, Contact) */}
+          <div className="grid grid-cols-2 gap-y-3.5 xs:gap-y-4 sm:gap-y-6 gap-x-4 xs:gap-x-5 sm:gap-x-7 w-full justify-items-center">
             {mobileGridApps.map((item, idx) => (
               <motion.button
                 key={item.id}
@@ -146,17 +146,17 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: (idx + 1) * 0.06, duration: 0.25 }}
                 onClick={() => handleLaunchApp(item)}
-                className="flex flex-col items-center group text-center focus:outline-none cursor-pointer w-full max-w-[130px]"
+                className="flex flex-col items-center group text-center focus:outline-none cursor-pointer w-full max-w-[125px]"
               >
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[22px] sm:rounded-[26px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass flex items-center justify-center">
+                <div className="relative w-20 h-20 xs:w-22 xs:h-22 sm:w-26 sm:h-26 rounded-[19px] xs:rounded-[21px] sm:rounded-[24px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass flex items-center justify-center">
                   {/* Refractive convex highlight */}
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/15 pointer-events-none" />
-                  <div className="relative z-10 w-11 h-11 sm:w-13 sm:h-13 text-zinc-100 group-hover:text-white transition-colors flex items-center justify-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+                  <div className="relative z-10 w-9 h-9 xs:w-10 xs:h-10 sm:w-12 sm:h-12 text-zinc-100 group-hover:text-white transition-colors flex items-center justify-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
                     {item.icon}
                   </div>
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors pointer-events-none" />
                 </div>
-                <span className="mt-1.5 text-xs font-medium text-white/90 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)] tracking-tight text-center whitespace-nowrap">
+                <span className="mt-1 text-[11px] xs:text-xs font-medium text-white/90 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)] tracking-tight text-center whitespace-nowrap">
                   {item.appName}
                 </span>
               </motion.button>

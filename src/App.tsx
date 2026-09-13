@@ -249,7 +249,7 @@ export default function App() {
       )}
 
       {/* 3. Floating Desktop / Mobile App Icons (Frame A & Frame C) */}
-      <main className="relative flex-1 w-full min-h-0 overflow-hidden flex flex-col justify-center">
+      <main className="relative flex-1 w-full min-h-0 overflow-hidden flex flex-col justify-start sm:justify-center">
         <DesktopIcons
           onOpenRelease={(release) => openWindow('release', release)}
           onOpenWindow={openWindow}
@@ -410,7 +410,7 @@ export default function App() {
   );
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-[#121214] text-zinc-100 flex flex-col font-sans">
+    <div className="w-screen h-screen h-[100dvh] overflow-hidden bg-[#121214] text-zinc-100 flex flex-col font-sans">
       {isMobileFrame ? (
         <div className="relative w-full h-full flex flex-col items-center justify-center bg-zinc-900/95">
           {/* Switcher header on top */}
