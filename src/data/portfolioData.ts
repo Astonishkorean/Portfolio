@@ -342,10 +342,10 @@ export const SOUND_DIRECTION_WORKS: SoundDirectionItem[] = [
     title: 'LGU+ 5G AR 콘텐츠 사운드 연출',
     client: 'LG Uplus / K-Pop AR Project',
     period: 'Commercial Project',
-    role: '효과음(SFX) 및 BGM 사운드 디자인',
+    role: 'BGM 사운드 디자인',
     impact: '오마이걸(OH MY GIRL), 에이핑크(Apink) 참여 공식 프로젝트',
-    description: 'LGU+ 차세대 5G 증강현실(AR) 인터랙티브 콘텐츠에 최적화된 오디오 환경을 기획하고 제작했습니다. 탑티어 K-Pop 아티스트들의 모션과 비주얼에 부합하는 공간감 넘치는 효과음(SFX)과 세련된 BGM을 조화롭게 믹싱하여 사용자 몰입도를 극대화했습니다.',
-    tags: ['K-Pop AR', 'Interactive SFX', 'Spatial Audio', '5G Content']
+    description: 'LGU+ 차세대 5G 증강현실(AR) 인터랙티브 콘텐츠에 최적화된 오디오 환경을 기획하고 제작했습니다. 탑티어 K-Pop 아티스트들의 모션과 비주얼에 부합하는 세련된 BGM을 조화롭게 믹싱하여 사용자 몰입도를 극대화했습니다.',
+    tags: ['K-Pop AR', 'Spatial Audio', '5G Content']
   },
   {
     id: 'volvo-europe',
