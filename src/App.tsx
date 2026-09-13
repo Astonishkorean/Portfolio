@@ -93,6 +93,9 @@ export default function App() {
   const [isMobileScreen, setIsMobileScreen] = useState(() => 
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
   );
+  const [isPortrait, setIsPortrait] = useState(() =>
+    typeof window !== 'undefined' ? window.innerHeight >= window.innerWidth : true
+  );
 
   // Sync with audio engine callbacks
   useEffect(() => {
@@ -101,12 +104,19 @@ export default function App() {
       setActiveTrackId(trackId);
     });
 
-    const checkMobile = () => {
-      setIsMobileScreen(window.innerWidth < 768);
+    const checkViewport = () => {
+      const isMobile = window.innerWidth < 768 || (window.innerHeight < 550 && window.innerWidth < 1024);
+      const portrait = window.innerHeight >= window.innerWidth;
+      setIsMobileScreen(isMobile);
+      setIsPortrait(portrait);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    window.addEventListener('orientationchange', checkViewport);
+    return () => {
+      window.removeEventListener('resize', checkViewport);
+      window.removeEventListener('orientationchange', checkViewport);
+    };
   }, []);
 
   const bringToFront = (windowId: string) => {
@@ -243,7 +253,7 @@ export default function App() {
         <DesktopIcons
           onOpenRelease={(release) => openWindow('release', release)}
           onOpenWindow={openWindow}
-          isMobileLayout={inFrame || isMobileScreen}
+          isMobileLayout={inFrame || (isMobileScreen && isPortrait)}
         />
       </main>
 
@@ -255,6 +265,8 @@ export default function App() {
           isPlaying={isPlaying}
           onTogglePlay={() => handleTogglePlay(activeTrackId)}
           isMobile={inFrame || isMobileScreen}
+          isPortrait={inFrame ? true : isPortrait}
+          inFrame={inFrame}
         />
       </div>
 

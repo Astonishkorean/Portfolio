@@ -8,12 +8,16 @@ interface DockProps {
   isPlaying: boolean;
   onTogglePlay: () => void;
   isMobile?: boolean;
+  isPortrait?: boolean;
+  inFrame?: boolean;
 }
 
 export const Dock: React.FC<DockProps> = ({
   onOpenWindow,
   activeWindows,
   isMobile = false,
+  isPortrait = true,
+  inFrame = false,
 }) => {
   const isWindowActive = (type: string) => activeWindows.includes(type);
 
@@ -153,19 +157,19 @@ export const Dock: React.FC<DockProps> = ({
     }
   ];
 
-  // Mobile-only dock: 인스타그램 / 유튜브 / 애플뮤직 / 스포티파이
-  if (isMobile) {
+  // Mobile-only dock (portrait only): 인스타그램 / 유튜브 / 애플뮤직 / 스포티파이
+  if (isMobile && isPortrait) {
     return (
       <nav 
         aria-label="Quick Channels" 
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-40 select-none max-w-[96vw]"
+        className={`${inFrame ? 'absolute' : 'fixed'} bottom-3 left-1/2 -translate-x-1/2 z-40 select-none max-w-[96vw] pointer-events-auto`}
         style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' }}
       >
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="flex items-center gap-3 sm:gap-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[30px] liquid-glass-dock"
+          className="flex items-center gap-3 sm:gap-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-[30px] liquid-glass-dock shadow-2xl"
         >
           {mobileChannels.map((channel) => (
             <div key={channel.id} className="relative group">
@@ -173,7 +177,7 @@ export const Dock: React.FC<DockProps> = ({
                 href={channel.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-[54px] h-[54px] sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[22px] transition-all duration-200 active:scale-90 hover:scale-105 ${channel.bgClass} flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_20px_rgba(0,0,0,0.45)]`}
+                className={`w-[52px] h-[52px] xs:w-[54px] xs:h-[54px] sm:w-16 sm:h-16 rounded-[18px] sm:rounded-[22px] transition-all duration-200 active:scale-90 hover:scale-105 ${channel.bgClass} flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_20px_rgba(0,0,0,0.45)]`}
                 title={channel.title}
                 aria-label={channel.title}
               >
@@ -193,14 +197,14 @@ export const Dock: React.FC<DockProps> = ({
   return (
     <nav 
       aria-label="Quick Actions" 
-      className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 select-none max-w-[99vw]"
-      style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' }}
+      className={`${inFrame ? 'absolute' : 'fixed'} bottom-2 sm:bottom-4 md:bottom-5 left-1/2 -translate-x-1/2 z-40 select-none max-w-[99vw] pointer-events-auto`}
+      style={{ bottom: 'max(0.5rem, env(safe-area-inset-bottom, 0.5rem))' }}
     >
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="flex items-center gap-2.5 sm:gap-4 px-4 py-3 sm:px-7 sm:py-4 rounded-[28px] sm:rounded-[40px] liquid-glass-dock"
+        className="flex items-center gap-1.5 xs:gap-2 sm:gap-3 md:gap-4 px-2.5 py-1.5 xs:px-3.5 xs:py-2 sm:px-6 sm:py-3.5 md:px-7 md:py-4 rounded-[22px] xs:rounded-[26px] sm:rounded-[36px] md:rounded-[40px] liquid-glass-dock"
       >
         {/* ======================================================== */}
         {/* [LEFT OF DIVIDER] Desktop Applications (Liquid Glass)    */}
@@ -209,7 +213,7 @@ export const Dock: React.FC<DockProps> = ({
           <div key={app.id} className="relative group">
             <button
               onClick={app.action}
-              className="w-16 h-16 sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] rounded-2xl sm:rounded-[26px] transition-all duration-200 group-hover:-translate-y-2 group-hover:scale-110 group-active:scale-95 liquid-glass-button flex items-center justify-center relative overflow-hidden text-white"
+              className="w-11 h-11 xs:w-13 xs:h-13 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] rounded-xl xs:rounded-2xl sm:rounded-[24px] md:rounded-[26px] transition-all duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-108 group-active:scale-95 liquid-glass-button flex items-center justify-center relative overflow-hidden text-white cursor-pointer"
               title={app.appName}
             >
               {/* Refractive convex highlight */}
@@ -221,7 +225,10 @@ export const Dock: React.FC<DockProps> = ({
                   ? 'text-zinc-100 group-hover:text-amber-300' 
                   : 'text-zinc-100 group-hover:text-white'
               }`}>
-                {app.icon}
+                {/* Scale icon for smaller landscape view */}
+                <div className="scale-75 xs:scale-85 sm:scale-100">
+                  {app.icon}
+                </div>
               </div>
 
               {/* Hover highlight overlay */}
@@ -230,11 +237,11 @@ export const Dock: React.FC<DockProps> = ({
 
             {/* Active Running Dot Indicator */}
             {app.isActive && (
-              <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-white shadow-[0_0_8px_white]" />
+              <span className="absolute -bottom-1.5 sm:-bottom-2.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white shadow-[0_0_6px_white]" />
             )}
 
             {/* Hover Tooltip */}
-            <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+            <span className="pointer-events-none absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
               {app.appName}
             </span>
           </div>
@@ -243,7 +250,7 @@ export const Dock: React.FC<DockProps> = ({
         {/* ======================================================== */}
         {/* [CENTER DIVIDER LINE] 독바 중앙선                       */}
         {/* ======================================================== */}
-        <div className="w-[2px] sm:w-[2.5px] h-12 sm:h-16 bg-white/40 shadow-[0_0_8px_rgba(255,255,255,0.3)] mx-1.5 sm:mx-3 rounded-full flex-shrink-0" />
+        <div className="w-[1.5px] sm:w-[2px] md:w-[2.5px] h-8 sm:h-12 md:h-16 bg-white/40 shadow-[0_0_8px_rgba(255,255,255,0.3)] mx-1 sm:mx-2 md:mx-3 rounded-full flex-shrink-0" />
 
         {/* ======================================================== */}
         {/* [RIGHT OF DIVIDER] Social, Media & Streaming Channels     */}
@@ -256,16 +263,18 @@ export const Dock: React.FC<DockProps> = ({
             href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] rounded-2xl sm:rounded-[26px] transition-all duration-200 group-hover:-translate-y-2 group-hover:scale-110 group-active:scale-95 bg-gradient-to-tr from-[#fdf497] via-[#fd5949] via-[#d6249f] to-[#285AEB] flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
+            className="w-11 h-11 xs:w-13 xs:h-13 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] rounded-xl xs:rounded-2xl sm:rounded-[24px] md:rounded-[26px] transition-all duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-108 group-active:scale-95 bg-gradient-to-tr from-[#fdf497] via-[#fd5949] via-[#d6249f] to-[#285AEB] flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
             title="Instagram (@asik_d_artist)"
           >
             {/* Refractive convex highlight */}
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 pointer-events-none" />
-            <svg className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 fill-current relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+            <div className="scale-75 xs:scale-85 sm:scale-100 flex items-center justify-center">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
           </a>
-          <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+          <span className="pointer-events-none absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
             Instagram
           </span>
         </div>
@@ -276,16 +285,18 @@ export const Dock: React.FC<DockProps> = ({
             href={youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] rounded-2xl sm:rounded-[26px] transition-all duration-200 group-hover:-translate-y-2 group-hover:scale-110 group-active:scale-95 bg-[#FF0000] flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
+            className="w-11 h-11 xs:w-13 xs:h-13 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] rounded-xl xs:rounded-2xl sm:rounded-[24px] md:rounded-[26px] transition-all duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-108 group-active:scale-95 bg-[#FF0000] flex items-center justify-center border border-white/40 text-white relative overflow-hidden shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
             title="YouTube (@astonishingkorean)"
           >
             {/* Refractive convex highlight */}
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 pointer-events-none" />
-            <svg className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 fill-current relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
+            <div className="scale-75 xs:scale-85 sm:scale-100 flex items-center justify-center">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-current relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
           </a>
-          <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+          <span className="pointer-events-none absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
             YouTube
           </span>
         </div>
@@ -296,16 +307,18 @@ export const Dock: React.FC<DockProps> = ({
             href={appleMusicUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] rounded-2xl sm:rounded-[26px] transition-all duration-200 group-hover:-translate-y-2 group-hover:scale-110 group-active:scale-95 bg-gradient-to-tr from-[#FC3C44] via-[#F94C57] to-[#FA2D55] flex items-center justify-center border border-white/40 text-white relative overflow-hidden select-none shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
+            className="w-11 h-11 xs:w-13 xs:h-13 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] rounded-xl xs:rounded-2xl sm:rounded-[24px] md:rounded-[26px] transition-all duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-108 group-active:scale-95 bg-gradient-to-tr from-[#FC3C44] via-[#F94C57] to-[#FA2D55] flex items-center justify-center border border-white/40 text-white relative overflow-hidden select-none shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
             title="Apple Music (애플뮤직) - Asi.K"
           >
             {/* Refractive convex highlight */}
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 pointer-events-none" />
-            <svg className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 fill-white relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
-              <path d="M19.589 6.686a.75.75 0 0 0-.649-.679l-9-1.286A.75.75 0 0 0 9.1 5.46v9.336a3.25 3.25 0 1 0 1.5 2.704V8.508l7.5 1.071v4.217a3.25 3.25 0 1 0 1.5 2.704V6.75a.75.75 0 0 0-.011-.064z"/>
-            </svg>
+            <div className="scale-75 xs:scale-85 sm:scale-100 flex items-center justify-center">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-white relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 24 24">
+                <path d="M19.589 6.686a.75.75 0 0 0-.649-.679l-9-1.286A.75.75 0 0 0 9.1 5.46v9.336a3.25 3.25 0 1 0 1.5 2.704V8.508l7.5 1.071v4.217a3.25 3.25 0 1 0 1.5 2.704V6.75a.75.75 0 0 0-.011-.064z"/>
+              </svg>
+            </div>
           </a>
-          <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+          <span className="pointer-events-none absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
             애플뮤직 (Apple Music)
           </span>
         </div>
@@ -316,16 +329,18 @@ export const Dock: React.FC<DockProps> = ({
             href={spotifyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-[88px] md:h-[88px] rounded-2xl sm:rounded-[26px] transition-all duration-200 group-hover:-translate-y-2 group-hover:scale-110 group-active:scale-95 bg-[#1DB954] flex items-center justify-center border border-white/40 text-black relative overflow-hidden select-none shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
+            className="w-11 h-11 xs:w-13 xs:h-13 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] rounded-xl xs:rounded-2xl sm:rounded-[24px] md:rounded-[26px] transition-all duration-200 group-hover:-translate-y-1.5 sm:group-hover:-translate-y-2 group-hover:scale-108 group-active:scale-95 bg-[#1DB954] flex items-center justify-center border border-white/40 text-black relative overflow-hidden select-none shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.7),inset_0_-1px_1.5px_rgba(0,0,0,0.3),0_8px_22px_rgba(0,0,0,0.45)]"
             title="Spotify (스포티파이) - Asi.K 아티스트 채널"
           >
             {/* Refractive convex highlight */}
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 pointer-events-none" />
-            <svg className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 fill-black relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" viewBox="0 0 24 24">
-              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.497 17.306c-.215.353-.674.464-1.026.25-2.812-1.718-6.352-2.107-10.521-1.155-.403.092-.803-.16-.895-.563-.092-.403.16-.803.563-.895 4.568-1.044 8.487-.597 11.629 1.337.352.215.464.674.25 1.026zm1.467-3.262c-.27.442-.849.582-1.291.311-3.218-1.977-8.125-2.55-11.932-1.393-.499.151-1.028-.135-1.18-.634-.151-.499.135-1.028.634-1.18 4.354-1.321 9.774-.682 13.458 1.583.442.271.582.85.311 1.313zm.126-3.41c-3.858-2.29-10.222-2.502-13.886-1.389-.59.18-1.216-.153-1.396-.743-.18-.59.153-1.216.743-1.396 4.214-1.28 11.246-1.03 15.68 1.603.53.315.704 1.006.39 1.536-.314.53-1.006.704-1.531.393z"/>
-            </svg>
+            <div className="scale-75 xs:scale-85 sm:scale-100 flex items-center justify-center">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 fill-black relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.497 17.306c-.215.353-.674.464-1.026.25-2.812-1.718-6.352-2.107-10.521-1.155-.403.092-.803-.16-.895-.563-.092-.403.16-.803.563-.895 4.568-1.044 8.487-.597 11.629 1.337.352.215.464.674.25 1.026zm1.467-3.262c-.27.442-.849.582-1.291.311-3.218-1.977-8.125-2.55-11.932-1.393-.499.151-1.028-.135-1.18-.634-.151-.499.135-1.028.634-1.18 4.354-1.321 9.774-.682 13.458 1.583.442.271.582.85.311 1.313zm.126-3.41c-3.858-2.29-10.222-2.502-13.886-1.389-.59.18-1.216-.153-1.396-.743-.18-.59.153-1.216.743-1.396 4.214-1.28 11.246-1.03 15.68 1.603.53.315.704 1.006.39 1.536-.314.53-1.006.704-1.531.393z"/>
+              </svg>
+            </div>
           </a>
-          <span className="pointer-events-none absolute -top-11 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
+          <span className="pointer-events-none absolute -top-10 sm:-top-11 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-medium bg-zinc-900/90 text-white backdrop-blur whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg z-50">
             스포티파이 (Spotify)
           </span>
         </div>

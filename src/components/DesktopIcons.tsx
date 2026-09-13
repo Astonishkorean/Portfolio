@@ -167,11 +167,11 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
     );
   }
 
-  // Desktop layout: Center-aligned horizontal row (가로 일렬), matching Dock order:
+  // Desktop & Landscape layout: Center-aligned horizontal row (가로 일렬), matching Dock order:
   // 1. About -> 2. Discography -> 3. Sound Engineering -> 4. Mentoring -> 5. Contact
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center pt-8 pb-20 sm:pb-24 px-4 sm:px-8 overflow-x-auto overflow-y-hidden custom-scrollbar">
-      <div className="flex flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 my-auto pointer-events-auto">
+    <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center pt-2 sm:pt-8 pb-16 sm:pb-24 px-2 sm:px-8 overflow-x-auto overflow-y-hidden custom-scrollbar">
+      <div className="flex flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 my-auto pointer-events-auto">
         {appItems.map((item, idx) => {
           const isEngineering = item.windowType === 'direction';
 
@@ -199,9 +199,9 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
                 onClick={() => handleLaunchApp(item)}
                 className="flex flex-col items-center group focus:outline-none cursor-pointer select-none"
               >
-                {/* Liquid Glass App Icon Tile (150% enlarged) */}
+                {/* Liquid Glass App Icon Tile (Responsive for mobile landscape to large desktop) */}
                 <div 
-                  className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-46 md:h-46 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-[34px] sm:rounded-[42px] md:rounded-[48px] lg:rounded-[54px] xl:rounded-[58px] overflow-hidden transition-all duration-300 group-hover:scale-108 group-active:scale-95 flex items-center justify-center ${
+                  className={`relative w-18 h-18 xs:w-22 xs:h-22 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-[18px] xs:rounded-[22px] sm:rounded-[38px] md:rounded-[46px] lg:rounded-[54px] xl:rounded-[58px] overflow-hidden transition-all duration-300 group-hover:scale-108 group-active:scale-95 flex items-center justify-center ${
                     isEngineering ? 'liquid-glass-hero' : 'liquid-glass'
                   }`}
                 >
@@ -210,7 +210,7 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
 
                   {/* 2D Pictogram Icon */}
                   <div 
-                    className={`relative z-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] ${
+                    className={`relative z-10 w-9 h-9 xs:w-11 xs:h-11 sm:w-18 sm:h-18 md:w-22 md:h-22 lg:w-28 lg:h-28 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] ${
                       isEngineering
                         ? 'text-amber-300 group-hover:text-amber-200'
                         : 'text-zinc-100 group-hover:text-white'
@@ -225,7 +225,7 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
 
                 {/* Minimalist Title */}
                 <span 
-                  className={`mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium sm:font-semibold tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] transition-colors text-center whitespace-nowrap ${
+                  className={`mt-1.5 xs:mt-2 sm:mt-3.5 text-[11px] xs:text-xs sm:text-base md:text-lg lg:text-xl font-medium sm:font-semibold tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] transition-colors text-center whitespace-nowrap ${
                     isEngineering 
                       ? 'text-amber-300 font-bold group-hover:text-amber-200' 
                       : 'text-white/95 group-hover:text-amber-200'
