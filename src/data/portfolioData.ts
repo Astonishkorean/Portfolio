@@ -377,7 +377,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '김새얀',
     title: 'Beautiful Desease',
     format: 'Single Track',
-    year: '2025'
+    year: '2025',
+    url: 'https://music.apple.com/kr/album/beautiful-disease/1852138571?i=1852138848'
   },
   {
     id: 'c-2',
@@ -385,7 +386,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '김새얀',
     title: '꿈에서 만나',
     format: 'Single Track',
-    year: '2025'
+    year: '2025',
+    url: 'https://music.apple.com/kr/album/%EA%BF%88%EC%97%90%EC%84%9C-%EB%A7%8C%EB%82%98/1859900142?i=1859900352'
   },
   {
     id: 'c-3',
@@ -393,7 +395,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '김새얀',
     title: '나만의 작은 새',
     format: 'Single Track',
-    year: '2025'
+    year: '2025',
+    url: 'https://music.apple.com/kr/album/%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9E%91%EC%9D%80-%EC%83%88-feat-%EC%A1%B0%EC%8A%B9%EC%97%B0/1859900142?i=1859900332'
   },
   {
     id: 'c-4',
@@ -401,15 +404,17 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '키코 (KiKO)',
     title: 'Multiple Personality',
     format: 'EP Album',
-    year: '2026'
+    year: '2026',
+    url: 'https://youtu.be/Dv3EYYvPZEQ?list=OLAK5uy_n5kqChph8Ik6E4o_JZ5v1ktnZBuRIvQS4'
   },
   {
     id: 'c-5',
     category: 'Mix & Master',
     artist: 'Owoon',
-    title: 'Painkiller',
+    title: 'PlainKiller',
     format: 'EP Album',
-    year: '2026'
+    year: '2026',
+    url: 'https://youtu.be/7mRAVdvlBKI?list=PL_npzhNwcVHV7paJxwWxoBsGTNGgMfOVp'
   },
   {
     id: 'c-6',
@@ -417,7 +422,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: 'Owoon',
     title: 'Bet Me',
     format: 'Single',
-    year: '2026'
+    year: '2026',
+    url: 'https://youtu.be/5iw9k-u-E08?list=RD5iw9k-u-E08'
   },
   {
     id: 'c-7',
@@ -425,7 +431,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: 'CO:ZIP (코드집합소)',
     title: 'Time Out',
     format: 'Single',
-    year: '2026'
+    year: '2026',
+    url: 'https://youtu.be/vnw4MpqQ2i0?list=RDvnw4MpqQ2i0'
   },
   {
     id: 'c-8',
@@ -433,7 +440,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '다민이',
     title: 'Dog or Chick 2.0',
     format: 'Soundcloud',
-    year: '2022'
+    year: '2022',
+    url: 'https://soundcloud.com/simondamini/damini-dog-or-chick-2'
   },
   {
     id: 'c-9',
@@ -441,7 +449,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: 'Econo_MIC',
     title: '타지 (Feat. HOTCHKISS, Asi.K)',
     format: 'Single',
-    year: '2022'
+    year: '2022',
+    url: 'https://youtu.be/QBzvAlIrKDM?list=RDQBzvAlIrKDM'
   },
   {
     id: 'c-10',
@@ -449,7 +458,8 @@ export const ADDITIONAL_CREDITS: AdditionalCredit[] = [
     artist: '안소미',
     title: '사랑의 컬러링',
     format: 'Single',
-    year: '2025'
+    year: '2025',
+    url: 'https://youtu.be/NrMw5hkR2Ig?list=RDNrMw5hkR2Ig'
   }
 ];
 
@@ -469,7 +479,6 @@ export const EDUCATION_MENTORING: MentoringItem[] = [
   {
     id: 'artist-lessons',
     title: '아티스트 1:1 개인 레슨 & 입시 지도',
-    organization: 'Asi.K Sound Studio',
     period: '2020 - 2024',
     description: '프로 실무 중심의 미디(MIDI), 음향학 이론, 믹스/마스터 테크닉 멘토링을 통해 유수의 명문 실용음악과 합격생을 다수 배출했습니다.',
     achievements: [

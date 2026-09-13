@@ -44,9 +44,11 @@ export const MentoringWindow: React.FC<MentoringWindowProps> = () => {
                 <h3 className="text-base font-bold text-white group-hover:text-emerald-200 transition-colors">
                   {item.title}
                 </h3>
-                <div className="text-xs text-zinc-400 font-medium mt-0.5">
-                  {item.organization}
-                </div>
+                {item.organization && (
+                  <div className="text-xs text-zinc-400 font-medium mt-0.5">
+                    {item.organization}
+                  </div>
+                )}
               </div>
 
               <p className="text-xs text-zinc-300 leading-relaxed">

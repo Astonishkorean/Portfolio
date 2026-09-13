@@ -46,12 +46,13 @@ export interface AdditionalCredit {
   title: string;
   format: string; // 'Single' | 'EP' | 'Track'
   year?: string;
+  url?: string;
 }
 
 export interface MentoringItem {
   id: string;
   title: string;
-  organization: string;
+  organization?: string;
   period: string;
   description: string;
   achievements: string[];
