@@ -238,7 +238,7 @@ export default function App() {
       )}
 
       {/* 3. Floating Desktop / Mobile App Icons (Frame A & Frame C) */}
-      <main className="relative flex-1 w-full h-full flex flex-col justify-center">
+      <main className="relative flex-1 w-full min-h-0 overflow-hidden flex flex-col justify-center">
         <DesktopIcons
           onOpenRelease={(release) => openWindow('release', release)}
           onOpenWindow={openWindow}

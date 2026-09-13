@@ -78,62 +78,66 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
     const cornerApps = appItems.filter(a => !a.isCenter);
 
     return (
-      <div className="w-full h-full overflow-y-auto custom-scrollbar px-5 pt-8 pb-28 flex flex-col items-center justify-center gap-6">
-        {/* Center Sound Engineering App (Enlarged 150%) */}
-        <motion.button
-          key={centerApp.id}
-          initial={{ opacity: 0, scale: 0.9, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          onClick={() => handleLaunchApp(centerApp)}
-          className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
-        >
-          <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-2xl shadow-black/70 border-2 border-amber-400/40 ring-2 ring-amber-400/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
-            <img 
-              src={centerApp.image} 
-              alt={centerApp.appName} 
-              className="w-full h-full object-cover select-none" 
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10 pointer-events-none" />
-          </div>
-          <span className="mt-2.5 text-sm sm:text-base font-semibold text-amber-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight text-center">
-            {centerApp.appName}
-          </span>
-        </motion.button>
+      <div 
+        className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-3 sm:pt-6 flex flex-col items-center"
+        style={{ paddingBottom: 'max(9.5rem, calc(8.5rem + env(safe-area-inset-bottom, 24px)))' }}
+      >
+        <div className="my-auto flex flex-col items-center gap-3.5 sm:gap-5 w-full max-w-[300px] sm:max-w-[350px]">
+          {/* Center Sound Engineering App */}
+          <motion.button
+            key={centerApp.id}
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => handleLaunchApp(centerApp)}
+            className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
+          >
+            <div className="relative w-28 h-28 sm:w-34 sm:h-34 rounded-[24px] sm:rounded-[30px] overflow-hidden shadow-2xl shadow-black/70 border-2 border-amber-400/40 ring-2 ring-amber-400/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
+              <img 
+                src={centerApp.image} 
+                alt={centerApp.appName} 
+                className="w-full h-full object-cover select-none" 
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10 pointer-events-none" />
+            </div>
+            <span className="mt-2 text-xs sm:text-sm font-semibold text-amber-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight text-center">
+              {centerApp.appName}
+            </span>
+          </motion.button>
 
-        {/* 4 Surrounding Apps in 2x2 Square (Enlarged 150%) */}
-        <div className="grid grid-cols-2 gap-y-6 gap-x-6 max-w-[340px] w-full">
-          {cornerApps.map((item, idx) => (
-            <motion.button
-              key={item.id}
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: (idx + 1) * 0.06, duration: 0.25 }}
-              onClick={() => handleLaunchApp(item)}
-              className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
-            >
-              <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl shadow-black/60 border border-white/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
-                <img 
-                  src={item.image} 
-                  alt={item.appName} 
-                  className="w-full h-full object-cover select-none" 
-                  loading="eager"
-                />
-              </div>
-              <span className="mt-2 text-xs sm:text-sm font-medium text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)] tracking-tight text-center truncate max-w-[130px]">
-                {item.appName}
-              </span>
-            </motion.button>
-          ))}
+          {/* 4 Surrounding Apps in 2x2 Square (About, Discography, Mentoring, Contact) */}
+          <div className="grid grid-cols-2 gap-y-3.5 sm:gap-y-4 gap-x-3.5 sm:gap-x-5 w-full">
+            {cornerApps.map((item, idx) => (
+              <motion.button
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: (idx + 1) * 0.06, duration: 0.25 }}
+                onClick={() => handleLaunchApp(item)}
+                className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
+              >
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl shadow-black/60 border border-white/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
+                  <img 
+                    src={item.image} 
+                    alt={item.appName} 
+                    className="w-full h-full object-cover select-none" 
+                    loading="eager"
+                  />
+                </div>
+                <span className="mt-1.5 text-xs font-medium text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)] tracking-tight text-center truncate max-w-[110px] sm:max-w-[130px]">
+                  {item.appName}
+                </span>
+              </motion.button>
+            ))}
+          </div>
         </div>
       </div>
     );
   }
 
   // Exact screen dead center (50%, 50%) for Sound Engineering, with surrounding 4 apps forming a perfect square
-  // Much wider spacing as requested
-  const squareDist = 'min(33vw, 32vh, 370px)';
+  const squareDist = 'min(28vw, 25vh, 310px)';
 
   const getItemCoordinates = (item: DesktopAppItem): React.CSSProperties => {
     if (item.isCenter) {

@@ -97,7 +97,11 @@ export const Dock: React.FC<DockProps> = ({
   const spotifyUrl = 'https://open.spotify.com/artist/48kE5uvv2Eh1iAmXIkZmMO';
 
   return (
-    <nav aria-label="Quick Actions" className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 select-none max-w-[99vw]">
+    <nav 
+      aria-label="Quick Actions" 
+      className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 select-none max-w-[99vw]"
+      style={{ bottom: 'max(0.75rem, env(safe-area-inset-bottom, 0.75rem))' }}
+    >
       <motion.div 
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
