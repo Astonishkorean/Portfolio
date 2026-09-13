@@ -14,20 +14,20 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
   return (
     <div className="space-y-6">
       {/* 2-Column Split Section: Left (Photo) / Right (Top: Name & Role, Bottom: Description) */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-zinc-950/90 border border-white/10 relative overflow-hidden">
+      <div className="p-5 sm:p-6 rounded-2xl liquid-glass relative overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 relative z-10 items-start">
           {/* [좌측 2분할]: 아티스트 사진 */}
           <div className="md:col-span-4 lg:col-span-4 flex flex-col items-center justify-start">
-            <div className="relative w-full max-w-sm aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 group">
+            <div className="relative w-full max-w-sm aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden border border-white/30 shadow-2xl bg-zinc-900 group">
               <img 
                 src={ASSETS.avatar} 
                 alt={ARTIST_PROFILE.stageName} 
                 className="w-full h-full object-cover select-none transition-transform duration-500 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded-xl border border-white/10 flex items-center gap-1.5">
+              <div className="absolute bottom-3 left-3 px-2.5 py-1 liquid-glass-button rounded-xl border border-white/20 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-[11px] font-mono text-zinc-300 font-medium">Asi.K</span>
+                <span className="text-[11px] font-mono text-zinc-200 font-medium">Asi.K</span>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
 
             {/* 우측 하단: 설명 및 코어 테마 해시태그 */}
             <div className="space-y-3.5">
-              <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed font-normal whitespace-pre-line">
                 {ARTIST_PROFILE.bio}
               </p>
 
@@ -82,7 +82,7 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
 
       {/* 1. Dolby Atmos 단독 단락 (한 단락으로 구성 및 공식 링크 추가) */}
       {dolbyHighlight && (
-        <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-zinc-950/70 to-zinc-900/60 border border-amber-400/30 space-y-3 relative overflow-hidden">
+        <div className="p-4 sm:p-5 rounded-2xl liquid-glass-hero space-y-3 relative overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Headphones className="w-4 h-4 text-amber-400" />
@@ -93,10 +93,10 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
                 {dolbyHighlight.title}
               </span>
             </div>
-            <span className="text-[11px] font-mono text-zinc-500">{dolbyHighlight.year}</span>
+            <span className="text-[11px] font-mono text-zinc-400">{dolbyHighlight.year}</span>
           </div>
 
-          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
             {dolbyHighlight.description}
           </p>
 
@@ -105,7 +105,7 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
               href={dolbyHighlight.linkUrl || "https://www.dolby.com/creator-lab/seoul-music-accelerator/"}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 hover:text-white border border-amber-400/40 text-xs font-semibold transition-all shadow-sm group cursor-pointer"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl liquid-glass-button text-amber-300 hover:text-white text-xs font-semibold transition-all shadow-sm group cursor-pointer"
             >
               <span>Dolby Seoul Music Accelerator 공식 사이트 바로가기</span>
               <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -125,13 +125,13 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
           {otherHighlights.map((item, idx) => (
             <div 
               key={idx}
-              className="p-4 rounded-xl bg-zinc-950/40 border border-white/10 hover:border-amber-400/30 transition-all space-y-2 group"
+              className="p-4 rounded-2xl liquid-glass hover:border-amber-400/40 transition-all space-y-2 group"
             >
               <div className="flex items-center justify-between">
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-400/20 text-amber-300 border border-amber-400/30">
                   {item.badge}
                 </span>
-                <span className="text-[11px] font-mono text-zinc-500">{item.year}</span>
+                <span className="text-[11px] font-mono text-zinc-400">{item.year}</span>
               </div>
               <h3 className="text-sm font-bold text-white group-hover:text-amber-200 transition-colors">
                 {item.title}
@@ -141,7 +141,7 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
                   {item.subtitle}
                 </div>
               )}
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <p className="text-xs text-zinc-300 leading-relaxed">
                 {item.description}
               </p>
             </div>

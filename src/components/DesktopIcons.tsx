@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ASSETS, OFFICIAL_RELEASES, SOUND_DIRECTION_WORKS } from '../data/portfolioData';
+import { SOUND_DIRECTION_WORKS } from '../data/portfolioData';
 
 interface DesktopIconsProps {
   onOpenRelease: (release: any) => void;
@@ -13,58 +13,84 @@ interface DesktopAppItem {
   windowType: 'about' | 'direction' | 'credits' | 'mentoring' | 'contact';
   windowData?: any;
   appName: string;
-  image: string;
-  isCenter?: boolean;
-  squareCorner?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  icon: React.ReactNode;
 }
 
 export const DesktopIcons: React.FC<DesktopIconsProps> = ({
-  onOpenRelease,
   onOpenWindow,
   isMobileLayout = false
 }) => {
-  // Center Sound Engineering + 4 Surrounding Apps forming a perfect Square (정사각형)
+  // Reordered to match the exact order in the Dock:
+  // 1. About
+  // 2. Discography (credits)
+  // 3. Sound Engineering (direction)
+  // 4. Mentoring
+  // 5. Contact
   const appItems: DesktopAppItem[] = [
-    // [CENTER] Sound Engineering - Dead center of the screen
+    // 1. About
+    {
+      id: 'app-about',
+      windowType: 'about',
+      appName: 'About',
+      icon: (
+        <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
+          {/* Artist Profile / Persona Pictogram */}
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2s2.1 4.8 4.8 4.8zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+        </svg>
+      ),
+    },
+    // 2. Discography (Official Releases)
+    {
+      id: 'app-discography',
+      windowType: 'credits',
+      appName: 'Discography',
+      icon: (
+        <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
+          {/* Vinyl LP Record Disc Pictogram */}
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-12.5c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5-2.02-4.5-4.5-4.5zm0 6.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+          <circle cx="12" cy="12" r="1.2" />
+        </svg>
+      ),
+    },
+    // 3. Sound Engineering
     {
       id: 'app-engineering',
       windowType: 'direction',
       windowData: SOUND_DIRECTION_WORKS[0],
       appName: 'Sound Engineering',
-      image: ASSETS.dolbyStudio,
-      isCenter: true,
+      icon: (
+        <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
+          {/* Audio Console Equalizer Faders Pictogram */}
+          <path d="M4 2c-.55 0-1 .45-1 1v4.5H1.5c-.83 0-1.5.67-1.5 1.5v3c0 .83.67 1.5 1.5 1.5H3V21c0 .55.45 1 1 1s1-.45 1-1v-7.5h1.5c.83 0 1.5-.67 1.5-1.5v-3c0-.83-.67-1.5-1.5-1.5H5V3c0-.55-.45-1-1-1z" />
+          <path d="M12 2c-.55 0-1 .45-1 1v2H9.5c-.83 0-1.5.67-1.5 1.5v3c0 .83.67 1.5 1.5 1.5H11V21c0 .55.45 1 1 1s1-.45 1-1V11h1.5c.83 0 1.5-.67 1.5-1.5v-3c0-.83-.67-1.5-1.5-1.5H13V3c0-.55-.45-1-1-1z" />
+          <path d="M20 2c-.55 0-1 .45-1 1v7.5h-1.5c-.83 0-1.5.67-1.5 1.5v3c0 .83.67 1.5 1.5 1.5H19V21c0 .55.45 1 1 1s1-.45 1-1v-4.5h1.5c.83 0 1.5-.67 1.5-1.5v-3c0-.83-.67-1.5-1.5-1.5H21V3c0-.55-.45-1-1-1z" />
+        </svg>
+      ),
     },
-    // [TOP-LEFT OF SQUARE] About
-    {
-      id: 'app-about',
-      windowType: 'about',
-      appName: 'About',
-      image: ASSETS.avatar,
-      squareCorner: 'top-left',
-    },
-    // [TOP-RIGHT OF SQUARE] Discography (Official Releases)
-    {
-      id: 'app-discography',
-      windowType: 'credits',
-      appName: 'Discography',
-      image: OFFICIAL_RELEASES[0].coverImage,
-      squareCorner: 'top-right',
-    },
-    // [BOTTOM-LEFT OF SQUARE] Mentoring (Education)
+    // 4. Mentoring (Education)
     {
       id: 'app-mentoring',
       windowType: 'mentoring',
       appName: 'Mentoring',
-      image: ASSETS.eduIcon,
-      squareCorner: 'bottom-left',
+      icon: (
+        <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
+          {/* Graduation Cap (Mortarboard) Pictogram */}
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+          <path d="M5 13.18v4c0 2.5 3.13 4.5 7 4.5s7-2 7-4.5v-4l-7 3.82-7-3.82z" />
+        </svg>
+      ),
     },
-    // [BOTTOM-RIGHT OF SQUARE] Contact (Collaboration & Work Requests)
+    // 5. Contact (Collaboration & Work Requests)
     {
       id: 'app-contact',
       windowType: 'contact',
       appName: 'Contact',
-      image: ASSETS.emailIcon,
-      squareCorner: 'bottom-right',
+      icon: (
+        <svg className="w-full h-full fill-current" viewBox="0 0 24 24">
+          {/* Postal Mail Envelope Pictogram */}
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg>
+      ),
     },
   ];
 
@@ -72,60 +98,65 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
     onOpenWindow(item.windowType, item.windowData);
   };
 
-  // Mobile layout (Sound Engineering highlighted + 2x2 square below)
+  // Mobile layout: About on top (prominent), and 2x2 grid below (Sound Engineering, Discography, Mentoring, Contact)
   if (isMobileLayout) {
-    const centerApp = appItems.find(a => a.isCenter)!;
-    const cornerApps = appItems.filter(a => !a.isCenter);
+    const mobileTopApp = appItems.find(a => a.windowType === 'about')!;
+    const mobileGridApps = [
+      appItems.find(a => a.windowType === 'direction')!, // Sound Engineering
+      appItems.find(a => a.windowType === 'credits')!,   // Discography
+      appItems.find(a => a.windowType === 'mentoring')!, // Mentoring
+      appItems.find(a => a.windowType === 'contact')!,   // Contact
+    ];
 
     return (
       <div 
         className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-3 sm:pt-6 flex flex-col items-center"
         style={{ paddingBottom: 'max(9.5rem, calc(8.5rem + env(safe-area-inset-bottom, 24px)))' }}
       >
-        <div className="my-auto flex flex-col items-center gap-3.5 sm:gap-5 w-full max-w-[300px] sm:max-w-[350px]">
-          {/* Center Sound Engineering App */}
+        {/* Container with 50% widened gap between top app and 2x2 grid */}
+        <div className="my-auto flex flex-col items-center gap-5 sm:gap-7 w-full max-w-[320px] sm:max-w-[360px]">
+          {/* Top Hero App: About (Liquid Glass Hero) */}
           <motion.button
-            key={centerApp.id}
+            key={mobileTopApp.id}
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => handleLaunchApp(centerApp)}
+            onClick={() => handleLaunchApp(mobileTopApp)}
             className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
           >
-            <div className="relative w-28 h-28 sm:w-34 sm:h-34 rounded-[24px] sm:rounded-[30px] overflow-hidden shadow-2xl shadow-black/70 border-2 border-amber-400/40 ring-2 ring-amber-400/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
-              <img 
-                src={centerApp.image} 
-                alt={centerApp.appName} 
-                className="w-full h-full object-cover select-none" 
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/10 pointer-events-none" />
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-[26px] sm:rounded-[30px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass-hero flex items-center justify-center">
+              {/* Refractive convex highlight */}
+              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/20 pointer-events-none" />
+              <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 text-amber-300 group-hover:text-amber-200 transition-colors flex items-center justify-center drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                {mobileTopApp.icon}
+              </div>
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors pointer-events-none" />
             </div>
-            <span className="mt-2 text-xs sm:text-sm font-semibold text-amber-300 drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] tracking-tight text-center">
-              {centerApp.appName}
+            <span className="mt-2 text-xs sm:text-sm font-semibold text-amber-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)] tracking-tight text-center">
+              {mobileTopApp.appName}
             </span>
           </motion.button>
 
-          {/* 4 Surrounding Apps in 2x2 Square (About, Discography, Mentoring, Contact) */}
-          <div className="grid grid-cols-2 gap-y-3.5 sm:gap-y-4 gap-x-3.5 sm:gap-x-5 w-full">
-            {cornerApps.map((item, idx) => (
+          {/* 4 Apps in 2x2 Square (Sound Engineering, Discography, Mentoring, Contact) with Liquid Glass & 50% widened spacing */}
+          <div className="grid grid-cols-2 gap-y-5 sm:gap-y-6 gap-x-5 sm:gap-x-7 w-full justify-items-center">
+            {mobileGridApps.map((item, idx) => (
               <motion.button
                 key={item.id}
                 initial={{ opacity: 0, scale: 0.9, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: (idx + 1) * 0.06, duration: 0.25 }}
                 onClick={() => handleLaunchApp(item)}
-                className="flex flex-col items-center group text-center focus:outline-none cursor-pointer"
+                className="flex flex-col items-center group text-center focus:outline-none cursor-pointer w-full max-w-[130px]"
               >
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl shadow-black/60 border border-white/20 transition-transform duration-200 active:scale-95 group-hover:scale-105 bg-zinc-900">
-                  <img 
-                    src={item.image} 
-                    alt={item.appName} 
-                    className="w-full h-full object-cover select-none" 
-                    loading="eager"
-                  />
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[22px] sm:rounded-[26px] overflow-hidden transition-transform duration-200 active:scale-95 group-hover:scale-105 liquid-glass flex items-center justify-center">
+                  {/* Refractive convex highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/15 pointer-events-none" />
+                  <div className="relative z-10 w-11 h-11 sm:w-13 sm:h-13 text-zinc-100 group-hover:text-white transition-colors flex items-center justify-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+                    {item.icon}
+                  </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors pointer-events-none" />
                 </div>
-                <span className="mt-1.5 text-xs font-medium text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.95)] tracking-tight text-center truncate max-w-[110px] sm:max-w-[130px]">
+                <span className="mt-1.5 text-xs font-medium text-white/90 drop-shadow-[0_1px_5px_rgba(0,0,0,0.95)] tracking-tight text-center whitespace-nowrap">
                   {item.appName}
                 </span>
               </motion.button>
@@ -136,83 +167,31 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
     );
   }
 
-  // Exact screen dead center (50%, 50%) for Sound Engineering, with surrounding 4 apps forming a perfect square
-  const squareDist = 'min(28vw, 25vh, 310px)';
-
-  const getItemCoordinates = (item: DesktopAppItem): React.CSSProperties => {
-    if (item.isCenter) {
-      return {
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-      };
-    }
-
-    if (item.squareCorner === 'top-left') {
-      return {
-        left: `calc(50% - ${squareDist})`,
-        top: `calc(50% - ${squareDist})`,
-        transform: 'translate(-50%, -50%)',
-      };
-    }
-
-    if (item.squareCorner === 'top-right') {
-      return {
-        left: `calc(50% + ${squareDist})`,
-        top: `calc(50% - ${squareDist})`,
-        transform: 'translate(-50%, -50%)',
-      };
-    }
-
-    if (item.squareCorner === 'bottom-left') {
-      return {
-        left: `calc(50% - ${squareDist})`,
-        top: `calc(50% + ${squareDist})`,
-        transform: 'translate(-50%, -50%)',
-      };
-    }
-
-    if (item.squareCorner === 'bottom-right') {
-      return {
-        left: `calc(50% + ${squareDist})`,
-        top: `calc(50% + ${squareDist})`,
-        transform: 'translate(-50%, -50%)',
-      };
-    }
-
-    return {
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-    };
-  };
-
+  // Desktop layout: Center-aligned horizontal row (가로 일렬), matching Dock order:
+  // 1. About -> 2. Discography -> 3. Sound Engineering -> 4. Mentoring -> 5. Contact
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      {appItems.map((item, idx) => {
-        const positionStyle = getItemCoordinates(item);
+    <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center pt-8 pb-20 sm:pb-24 px-4 sm:px-8 overflow-x-auto overflow-y-hidden custom-scrollbar">
+      <div className="flex flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 my-auto pointer-events-auto">
+        {appItems.map((item, idx) => {
+          const isEngineering = item.windowType === 'direction';
 
-        return (
-          <div
-            key={item.id}
-            style={positionStyle}
-            className="absolute pointer-events-auto"
-          >
+          return (
             <motion.div
-              initial={{ opacity: 0, scale: 0.88 }}
+              key={item.id}
+              initial={{ opacity: 0, y: 15, scale: 0.9 }}
               animate={{ 
                 opacity: 1, 
-                scale: 1,
-                y: [0, -4, 0]
+                y: [0, -4, 0],
+                scale: 1 
               }}
               transition={{ 
-                opacity: { duration: 0.45, delay: idx * 0.08 },
-                scale: { duration: 0.45, delay: idx * 0.08 },
+                opacity: { duration: 0.35, delay: idx * 0.07 },
+                scale: { duration: 0.35, delay: idx * 0.07 },
                 y: { 
-                  duration: 5.0 + (idx % 3) * 0.6, 
+                  duration: 4.8 + (idx % 3) * 0.6, 
                   repeat: Infinity, 
                   ease: "easeInOut",
-                  delay: idx * 0.35 
+                  delay: idx * 0.25 
                 }
               }}
             >
@@ -220,39 +199,45 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
                 onClick={() => handleLaunchApp(item)}
                 className="flex flex-col items-center group focus:outline-none cursor-pointer select-none"
               >
-                {/* 150% Enlarged Tile */}
+                {/* Liquid Glass App Icon Tile (150% enlarged) */}
                 <div 
-                  className={`relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-60 xl:h-60 rounded-[30px] sm:rounded-[36px] md:rounded-[40px] lg:rounded-[46px] overflow-hidden transition-all duration-300 group-hover:scale-105 group-active:scale-95 bg-zinc-900 ${
-                    item.isCenter 
-                      ? 'border-2 border-amber-400/40 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(245,158,11,0.25)] ring-1 ring-amber-400/30 group-hover:shadow-[0_26px_65px_rgba(0,0,0,0.9),0_0_36px_rgba(245,158,11,0.4)] group-hover:border-amber-300'
-                      : 'border border-white/25 shadow-[0_18px_45px_rgba(0,0,0,0.65)] group-hover:border-white/50 group-hover:shadow-[0_24px_55px_rgba(0,0,0,0.85),0_0_24px_rgba(255,255,255,0.2)]'
+                  className={`relative w-32 h-32 sm:w-40 sm:h-40 md:w-46 md:h-46 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-[34px] sm:rounded-[42px] md:rounded-[48px] lg:rounded-[54px] xl:rounded-[58px] overflow-hidden transition-all duration-300 group-hover:scale-108 group-active:scale-95 flex items-center justify-center ${
+                    isEngineering ? 'liquid-glass-hero' : 'liquid-glass'
                   }`}
                 >
-                  <img 
-                    src={item.image} 
-                    alt={item.appName} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108 select-none" 
-                    loading="eager"
-                  />
-                  {/* Subtle glass sheen */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/15 pointer-events-none" />
+                  {/* Refractive convex highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/20 pointer-events-none" />
+
+                  {/* 2D Pictogram Icon */}
+                  <div 
+                    className={`relative z-10 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] ${
+                      isEngineering
+                        ? 'text-amber-300 group-hover:text-amber-200'
+                        : 'text-zinc-100 group-hover:text-white'
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  {/* Hover highlight overlay */}
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors pointer-events-none" />
                 </div>
 
                 {/* Minimalist Title */}
                 <span 
-                  className={`mt-3.5 text-sm sm:text-base lg:text-lg font-medium tracking-tight drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)] transition-colors text-center whitespace-nowrap ${
-                    item.isCenter 
-                      ? 'text-amber-300 font-semibold group-hover:text-amber-200' 
-                      : 'text-white/90 group-hover:text-amber-200'
+                  className={`mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl font-medium sm:font-semibold tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] transition-colors text-center whitespace-nowrap ${
+                    isEngineering 
+                      ? 'text-amber-300 font-bold group-hover:text-amber-200' 
+                      : 'text-white/95 group-hover:text-amber-200'
                   }`}
                 >
                   {item.appName}
                 </span>
               </button>
             </motion.div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

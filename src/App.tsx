@@ -104,6 +104,7 @@ export default function App() {
     const checkMobile = () => {
       setIsMobileScreen(window.innerWidth < 768);
     };
+    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -253,6 +254,7 @@ export default function App() {
           activeWindows={activeWindowIds}
           isPlaying={isPlaying}
           onTogglePlay={() => handleTogglePlay(activeTrackId)}
+          isMobile={inFrame || isMobileScreen}
         />
       </div>
 

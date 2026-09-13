@@ -31,7 +31,7 @@ export const ContactWindow: React.FC = () => {
 
       <div className="space-y-4">
         {/* Email Address */}
-        <div className="p-5 rounded-2xl bg-zinc-950/50 border border-white/10 space-y-3">
+        <div className="p-5 rounded-2xl liquid-glass space-y-3">
           <div className="text-xs text-zinc-400 flex items-center gap-1.5 font-medium">
             <Mail className="w-4 h-4 text-blue-400" />
             <span>Email address</span>
@@ -41,7 +41,7 @@ export const ContactWindow: React.FC = () => {
           </div>
           <button
             onClick={handleCopyEmail}
-            className="w-full py-2.5 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-white flex items-center justify-center gap-2 transition-colors border border-white/10 cursor-pointer"
+            className="w-full py-2.5 px-4 rounded-xl liquid-glass-button text-xs font-semibold text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             {copiedEmail ? (
               <>
@@ -58,7 +58,7 @@ export const ContactWindow: React.FC = () => {
         </div>
 
         {/* Social channels */}
-        <div className="p-5 rounded-2xl bg-zinc-950/50 border border-white/10 space-y-3">
+        <div className="p-5 rounded-2xl liquid-glass space-y-3">
           <div className="text-xs text-zinc-400 font-medium">Social channels</div>
           <div className="divide-y divide-white/5 text-sm">
             {ARTIST_PROFILE.socials.map((s, i) => (

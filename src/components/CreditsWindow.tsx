@@ -51,8 +51,8 @@ export const CreditsWindow: React.FC<CreditsWindowProps> = () => {
         </div>
       </div>
 
-      {/* 2. Compact Overview Box (일목요연한 소개 내용 요약) */}
-      <div className="p-3 sm:p-3.5 rounded-xl bg-zinc-950/70 border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 text-xs">
+      {/* 2. Compact Overview Box (Liquid Glass) */}
+      <div className="p-3 sm:p-3.5 rounded-2xl liquid-glass grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 text-xs">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
             <Disc className="w-4 h-4" />
@@ -86,10 +86,10 @@ export const CreditsWindow: React.FC<CreditsWindowProps> = () => {
 
       {/* 3. Compact Filter Bar */}
       <div className="flex items-center justify-between gap-2 pt-0.5">
-        <div className="inline-flex items-center p-1 rounded-lg bg-zinc-900 border border-white/10 text-xs">
+        <div className="inline-flex items-center p-1 rounded-xl liquid-glass-button text-xs">
           <button
             onClick={() => setFilterType('all')}
-            className={`px-3 py-1 rounded-md transition-all font-medium cursor-pointer ${
+            className={`px-3 py-1 rounded-lg transition-all font-medium cursor-pointer ${
               filterType === 'all'
                 ? 'bg-purple-600 text-white font-semibold shadow-xs'
                 : 'text-zinc-400 hover:text-white'
@@ -99,7 +99,7 @@ export const CreditsWindow: React.FC<CreditsWindowProps> = () => {
           </button>
           <button
             onClick={() => setFilterType('album')}
-            className={`px-3 py-1 rounded-md transition-all font-medium cursor-pointer ${
+            className={`px-3 py-1 rounded-lg transition-all font-medium cursor-pointer ${
               filterType === 'album'
                 ? 'bg-purple-600 text-white font-semibold shadow-xs'
                 : 'text-zinc-400 hover:text-white'
@@ -109,7 +109,7 @@ export const CreditsWindow: React.FC<CreditsWindowProps> = () => {
           </button>
           <button
             onClick={() => setFilterType('single')}
-            className={`px-3 py-1 rounded-md transition-all font-medium cursor-pointer ${
+            className={`px-3 py-1 rounded-lg transition-all font-medium cursor-pointer ${
               filterType === 'single'
                 ? 'bg-purple-600 text-white font-semibold shadow-xs'
                 : 'text-zinc-400 hover:text-white'
@@ -132,7 +132,7 @@ export const CreditsWindow: React.FC<CreditsWindowProps> = () => {
             href={rel.youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 sm:p-3.5 rounded-xl bg-zinc-950/40 border border-white/10 hover:border-purple-500/50 hover:bg-zinc-900/50 transition-all flex gap-3.5 items-center relative cursor-pointer group shadow-xs block text-left"
+            className="p-3 sm:p-3.5 rounded-2xl liquid-glass hover:border-purple-400/50 transition-all flex gap-3.5 items-center relative cursor-pointer group shadow-xs block text-left"
           >
             {/* 1. Artwork with Type Badge */}
             <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-lg overflow-hidden shrink-0 bg-zinc-800 border border-white/10 shadow-md">

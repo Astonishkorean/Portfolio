@@ -38,7 +38,7 @@ export const ARTIST_PROFILE = {
   stageNameKo: '애시케이',
   birthDate: '1998.02.23',
   title: 'Music Producer, Sound Designer & Sound Engineer',
-  bio: "‘새벽’, ‘청춘’, ‘사랑’, ‘이별’이라는 테마를 바탕으로 힙합, R&B, 팝 펑크, K-Pop 등 다양한 장르를 아우르는 사운드를 디자인하는 뮤지션이자 사운드 엔지니어입니다. 감성을 자극하는 프로듀싱부터 트렌디하고 완성도 높은 마스터링까지 폭넓은 오디오 스펙트럼을 소화하며, 리스너들에게 깊은 몰입감과 공감을 선사하는 데 집중합니다.",
+  bio: "‘새벽’, ‘청춘’, ‘사랑’, ‘이별’이라는 테마를 바탕으로 힙합, R&B, 팝 펑크 등 다양한 장르를 아우르는 뮤지션이자 사운드 엔지니어.\n감성을 자극하는 프로듀싱부터 트렌디하고 완성도 높은 마스터링까지 폭넓은 오디오 스펙트럼을 소화하며, 리스너들에게 깊은 몰입감과 공감을 선사하는 데 집중합니다.",
   coreThemes: ['#새벽', '#청춘', '#사랑', '#이별'],
   genres: ['Hip-Hop', 'Alternative R&B', '팝 펑크 (Pop Punk)', 'K-Pop', 'Indie Electronica', 'Dolby Atmos Spatial'],
   highlights: [

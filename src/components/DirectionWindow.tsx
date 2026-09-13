@@ -86,7 +86,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
 
       {/* 3 Core Mix & Master Capabilities */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-        <div className="p-4 rounded-xl bg-zinc-950/50 border border-amber-400/30 space-y-2 relative overflow-hidden">
+        <div className="p-4 rounded-2xl liquid-glass-hero space-y-2 relative overflow-hidden">
           <div className="absolute top-2 right-2">
             <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-amber-400/20 text-amber-300 border border-amber-400/30">
               실무 특화
@@ -96,27 +96,27 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
             <Headphones className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-white">7.1.2 Dolby Atmos 믹스 실무</h3>
-          <p className="text-xs text-zinc-300 leading-relaxed">
+          <p className="text-xs text-zinc-200 leading-relaxed">
             7.1.2 Bed 트랙과 3차원 Object 정밀 공간 배치, 바이노럴(Binaural) 메타데이터 세팅 및 7.1.2 스피커와 헤드폰 간 완벽 호환 ADM BWF 마스터 실무 납품.
           </p>
         </div>
 
-        <div className="p-4 rounded-xl bg-zinc-950/50 border border-white/10 space-y-2">
+        <div className="p-4 rounded-2xl liquid-glass space-y-2">
           <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-300">
             <SlidersHorizontal className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-white">Stereo Stem & Precision Mix</h3>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-zinc-300 leading-relaxed">
             보컬 톤 쉐이핑, 펀치감 넘치는 드럼/베이스 저역대 제어, 정밀한 위상(Phase) 정렬 및 다이내믹 EQ를 통한 선명한 고해상도 사운드 스테이지.
           </p>
         </div>
 
-        <div className="p-4 rounded-xl bg-zinc-950/50 border border-white/10 space-y-2">
+        <div className="p-4 rounded-2xl liquid-glass space-y-2">
           <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-300">
             <ShieldCheck className="w-4 h-4" />
           </div>
           <h3 className="text-sm font-bold text-white">Streaming-Ready Mastering</h3>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-zinc-300 leading-relaxed">
             플랫폼별 최적화된 라우드니스와 투명한 리미팅. 멜론, 스포티파이, 애플뮤직 등 전 플랫폼 규격 무결점 송출.
           </p>
         </div>
@@ -186,7 +186,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
         </div>
 
         {/* Credits List */}
-        <div className="rounded-xl border border-white/10 bg-zinc-950/40 divide-y divide-white/5 overflow-hidden">
+        <div className="rounded-2xl liquid-glass divide-y divide-white/10 overflow-hidden">
           {filteredCredits.map((item) => {
             const rowContent = (
               <>
@@ -281,7 +281,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
           {SOUND_DIRECTION_WORKS.map((work) => (
             <div
               key={work.id}
-              className="p-5 rounded-2xl bg-zinc-950/50 border border-white/10 hover:border-white/25 transition-all space-y-3 group"
+              className="p-5 rounded-2xl liquid-glass space-y-3 group"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-2 border-b border-white/5">
                 <div className="flex items-center gap-2">
@@ -352,13 +352,13 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
       {/* ======================================================== */}
       {/* 3. Studio Systems & Precision Tools                      */}
       {/* ======================================================== */}
-      <div className="p-5 rounded-2xl bg-zinc-950/50 border border-white/10 space-y-3.5">
+      <div className="p-5 rounded-2xl liquid-glass space-y-3.5">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-300">
           <Cpu className="w-4 h-4 text-amber-400" />
           <span>Studio Systems & Precision Tools</span>
         </div>
         
-        <div className="p-4 rounded-xl bg-zinc-900/60 border border-white/5 space-y-3">
+        <div className="p-4 rounded-xl liquid-glass-button space-y-3">
           <div className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
             <span className="text-amber-400 font-bold mr-2">Tool :</span>
             <span className="font-medium text-zinc-100">

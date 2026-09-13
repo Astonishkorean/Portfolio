@@ -63,9 +63,9 @@ export const AudioPlayerWindow: React.FC<AudioPlayerWindowProps> = ({
       </div>
 
       {/* Visualizer Rack Display */}
-      <div className="p-6 rounded-2xl bg-zinc-950 border border-white/15 relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]">
+      <div className="p-6 rounded-2xl liquid-glass relative overflow-hidden flex flex-col items-center justify-center min-h-[160px]">
         {/* Subtle background glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(52,211,153,0.1)_0%,transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(52,211,153,0.12)_0%,transparent_70%)]"></div>
 
         {/* Dynamic equalizing frequency bars */}
         <div className="flex items-end gap-1.5 h-16 mb-4 z-10">
@@ -81,8 +81,8 @@ export const AudioPlayerWindow: React.FC<AudioPlayerWindowProps> = ({
                 className={`w-1.5 rounded-full ${
                   isPlaying 
                     ? i % 4 === 0 
-                      ? 'bg-amber-400' 
-                      : 'bg-emerald-400'
+                      ? 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.6)]' 
+                      : 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]'
                     : 'bg-zinc-700'
                 }`}
               ></div>
@@ -105,21 +105,21 @@ export const AudioPlayerWindow: React.FC<AudioPlayerWindowProps> = ({
       <div className="flex items-center justify-center gap-4">
         <button
           onClick={handlePrev}
-          className="p-2.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors cursor-pointer"
+          className="p-3 rounded-full liquid-glass-button text-white transition-colors cursor-pointer"
         >
           <SkipBack className="w-4 h-4" />
         </button>
 
         <button
           onClick={() => onTogglePlay(currentTrack.id)}
-          className="p-4 rounded-full bg-white hover:bg-zinc-200 text-zinc-950 shadow-xl transition-transform active:scale-95 cursor-pointer"
+          className="p-4 rounded-full bg-white hover:bg-zinc-100 text-zinc-950 shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.8),0_10px_25px_rgba(0,0,0,0.5)] transition-transform active:scale-95 cursor-pointer"
         >
           {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current ml-0.5" />}
         </button>
 
         <button
           onClick={handleNext}
-          className="p-2.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white transition-colors cursor-pointer"
+          className="p-3 rounded-full liquid-glass-button text-white transition-colors cursor-pointer"
         >
           <SkipForward className="w-4 h-4" />
         </button>

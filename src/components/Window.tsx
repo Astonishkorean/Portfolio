@@ -81,9 +81,9 @@ export const Window: React.FC<WindowProps> = ({
         isMaximized
           ? 'top-10 sm:top-12 bottom-2 sm:bottom-6 inset-x-2 sm:inset-6'
           : 'top-11 sm:top-[7vh] inset-x-0 mx-auto w-[95vw] sm:w-[88vw] ' + defaultWidth
-      } max-h-[calc(100dvh-3.25rem)] sm:max-h-[85vh] flex flex-col rounded-2xl bg-[#121215] border border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden select-text will-change-transform`}
+      } max-h-[calc(100dvh-3.25rem)] sm:max-h-[85vh] flex flex-col rounded-2xl backdrop-blur-3xl backdrop-saturate-180 bg-[#111317]/90 sm:bg-[#111317]/85 border border-white/35 shadow-[inset_0_1.5px_2px_rgba(255,255,255,0.45),0_30px_70px_-15px_rgba(0,0,0,0.85)] overflow-hidden select-text will-change-transform`}
     >
-      {/* macOS Window Titlebar Header (Frame B) */}
+      {/* macOS Window Titlebar Header (Liquid Glass) */}
       <div 
         onDoubleClick={() => setIsMaximized(!isMaximized)}
         onPointerDown={(e) => {
@@ -96,7 +96,7 @@ export const Window: React.FC<WindowProps> = ({
             dragControls.start(e);
           }
         }}
-        className={`h-11 sm:h-10 px-3 sm:px-4 flex items-center justify-between border-b border-white/10 bg-[#1c1c22] select-none shrink-0 touch-none ${
+        className={`h-11 sm:h-10 px-3 sm:px-4 flex items-center justify-between border-b border-white/15 bg-gradient-to-b from-white/[0.14] via-white/[0.05] to-transparent select-none shrink-0 touch-none ${
           isDesktop && !isMaximized ? 'sm:cursor-grab sm:active:cursor-grabbing' : 'cursor-default'
         }`}
       >

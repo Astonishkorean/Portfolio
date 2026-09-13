@@ -30,7 +30,7 @@ export const MentoringWindow: React.FC<MentoringWindowProps> = () => {
         {EDUCATION_MENTORING.map((item) => (
           <div
             key={item.id}
-            className="p-5 rounded-2xl bg-zinc-950/50 border border-white/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between space-y-4 group"
+            className="p-5 rounded-2xl liquid-glass hover:border-emerald-400/40 transition-all flex flex-col justify-between space-y-4 group"
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
