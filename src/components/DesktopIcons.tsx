@@ -81,6 +81,7 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
       <div className="w-full h-full overflow-y-auto custom-scrollbar px-5 pt-8 pb-28 flex flex-col items-center justify-center gap-6">
         {/* Center Sound Engineering App (Enlarged 150%) */}
         <motion.button
+          key={centerApp.id}
           initial={{ opacity: 0, scale: 0.9, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.3 }}

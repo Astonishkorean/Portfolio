@@ -58,7 +58,7 @@ export const AudioPlayerWindow: React.FC<AudioPlayerWindowProps> = ({
           }`}
         >
           <Sparkles className="w-2.5 h-2.5" />
-          <span>7.1.4 DOLBY ATMOS {isDolby ? 'ON' : 'OFF'}</span>
+          <span>7.1.2 DOLBY ATMOS {isDolby ? 'ON' : 'OFF'}</span>
         </button>
       </div>
 

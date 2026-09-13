@@ -86,7 +86,7 @@ export const TopBar: React.FC<TopBarProps> = ({
         {/* Dolby Atmos spatial tag */}
         <button
           onClick={handleToggleDolby}
-          title="Dolby Atmos 7.1.4 Spatial Audio Simulation"
+          title="Dolby Atmos 7.1.2 Spatial Audio Simulation"
           className={`hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] tracking-wider transition-all font-medium ${
             isDolbyActive 
               ? 'bg-amber-400/20 border border-amber-400/40 text-amber-300' 

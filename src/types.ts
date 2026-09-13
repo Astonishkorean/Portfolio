@@ -13,6 +13,7 @@ export interface OfficialRelease {
   description: string;
   coverImage: string;
   chartHighlight?: string;
+  youtubeUrl?: string;
   genre?: string;
   distributor?: string;
   agency?: string;

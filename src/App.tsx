@@ -90,7 +90,9 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeTrackId, setActiveTrackId] = useState('bftl');
   const [isMobileFrame, setIsMobileFrame] = useState(false);
-  const [isMobileScreen, setIsMobileScreen] = useState(false);
+  const [isMobileScreen, setIsMobileScreen] = useState(() => 
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
 
   // Sync with audio engine callbacks
   useEffect(() => {
@@ -102,7 +104,6 @@ export default function App() {
     const checkMobile = () => {
       setIsMobileScreen(window.innerWidth < 768);
     };
-    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -175,6 +176,27 @@ export default function App() {
     }));
   };
 
+  // Keyboard shortcut: ESC to close the active (highest zIndex) window
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        const openWindowIds = Object.keys(windows).filter(
+          (id) => windows[id].isOpen && !windows[id].isMinimized
+        );
+
+        if (openWindowIds.length > 0) {
+          // Sort by zIndex descending to close the top-most active window first
+          openWindowIds.sort((a, b) => windows[b].zIndex - windows[a].zIndex);
+          const topWindowId = openWindowIds[0];
+          closeWindow(topWindowId);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [windows]);
+
   const handleTogglePlay = (trackId?: string) => {
     audioEngine.togglePlay(trackId);
   };
@@ -239,6 +261,7 @@ export default function App() {
         {/* Release Detail Window */}
         {windows.release?.isOpen && (
           <Window
+            key="release"
             id="release"
             title={windows.release.title}
             isOpen={windows.release.isOpen}
@@ -260,6 +283,7 @@ export default function App() {
         {/* About / Bio & Highlights Window */}
         {windows.about?.isOpen && (
           <Window
+            key="about"
             id="about"
             title={windows.about.title}
             isOpen={windows.about.isOpen}
@@ -279,6 +303,7 @@ export default function App() {
         {/* Music Direction & Sound Engineering Window */}
         {windows.direction?.isOpen && (
           <Window
+            key="direction"
             id="direction"
             title={windows.direction.title}
             isOpen={windows.direction.isOpen}
@@ -295,6 +320,7 @@ export default function App() {
         {/* Official Discography Window */}
         {windows.credits?.isOpen && (
           <Window
+            key="credits"
             id="credits"
             title={windows.credits.title}
             isOpen={windows.credits.isOpen}
@@ -314,6 +340,7 @@ export default function App() {
         {/* Education & Mentoring Window */}
         {windows.mentoring?.isOpen && (
           <Window
+            key="mentoring"
             id="mentoring"
             title={windows.mentoring.title}
             isOpen={windows.mentoring.isOpen}
@@ -330,6 +357,7 @@ export default function App() {
         {/* Contact Window */}
         {windows.contact?.isOpen && (
           <Window
+            key="contact"
             id="contact"
             title={windows.contact.title}
             isOpen={windows.contact.isOpen}
@@ -346,6 +374,7 @@ export default function App() {
         {/* Spatial Audio Player Window */}
         {windows.player?.isOpen && (
           <Window
+            key="player"
             id="player"
             title={windows.player.title}
             isOpen={windows.player.isOpen}

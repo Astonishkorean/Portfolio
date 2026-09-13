@@ -40,7 +40,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
             SOUND ENGINEERING & MIX/MASTER
           </span>
           <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-            DOLBY ATMOS 7.1.4 SPECIALIST
+            DOLBY ATMOS 7.1.2 SPECIALIST
           </span>
           <span className="text-xs text-zinc-400">공식 믹싱 & 마스터링 크레딧 및 오디오 엔지니어링 실무</span>
         </div>
@@ -48,7 +48,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
           Sound Engineering & Mix/Master
         </h1>
         <p className="text-sm text-zinc-300 leading-relaxed max-w-2xl">
-          공간 음향(7.1.4 Dolby Atmos) 믹스 실무부터 고해상도 스테레오 믹스 & 마스터링까지, 상용 음원 유통 표준에 부합하는 철저한 엔지니어링 실무 워크플로우를 제공합니다.
+          공간 음향(7.1.2 Dolby Atmos) 믹스 실무부터 고해상도 스테레오 믹스 & 마스터링까지, 상용 음원 유통 표준에 부합하는 철저한 엔지니어링 실무 워크플로우를 제공합니다.
         </p>
       </div>
 
@@ -67,7 +67,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
               <span>Spatial Audio Laboratory & Dolby Atmos Mix Facility</span>
             </div>
             <div className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              7.1.4 Dolby Atmos 공간 음향 믹스 실무 & High-Fidelity 마스터링
+              7.1.2 Dolby Atmos 공간 음향 믹스 실무 & High-Fidelity 마스터링
             </div>
             <p className="text-xs text-zinc-300 mt-1 max-w-xl hidden sm:block">
               Dolby Atmos Accelerator Korea 선정 기반 실무 역량 · Apple Music, Tidal, Amazon Music 공식 표준 ADM BWF 마스터 납품 완결
@@ -95,9 +95,9 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
           <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-300">
             <Headphones className="w-4 h-4" />
           </div>
-          <h3 className="text-sm font-bold text-white">7.1.4 Dolby Atmos 믹스 실무</h3>
+          <h3 className="text-sm font-bold text-white">7.1.2 Dolby Atmos 믹스 실무</h3>
           <p className="text-xs text-zinc-300 leading-relaxed">
-            7.1.2 Bed 트랙과 3차원 Object 정밀 공간 배치, 바이노럴(Binaural) 메타데이터 세팅 및 7.1.4 스피커와 헤드폰 간 완벽 호환 ADM BWF 마스터 실무 납품.
+            7.1.2 Bed 트랙과 3차원 Object 정밀 공간 배치, 바이노럴(Binaural) 메타데이터 세팅 및 7.1.2 스피커와 헤드폰 간 완벽 호환 ADM BWF 마스터 실무 납품.
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export const DirectionWindow: React.FC<DirectionWindowProps> = ({ onOpenContact 
           </div>
           <h3 className="text-sm font-bold text-white">Stereo Stem & Precision Mix</h3>
           <p className="text-xs text-zinc-400 leading-relaxed">
-            보컬 톤 쉐이핑, 펀치감 넘치는 드럼/베이스 저역대 제어, 아날로그 서밍 에뮬레이션을 통한 풍부한 사운드 스테이지.
+            보컬 톤 쉐이핑, 펀치감 넘치는 드럼/베이스 저역대 제어, 정밀한 위상(Phase) 정렬 및 다이내믹 EQ를 통한 선명한 고해상도 사운드 스테이지.
           </p>
         </div>
 

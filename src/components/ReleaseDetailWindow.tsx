@@ -142,7 +142,7 @@ export const ReleaseDetailWindow: React.FC<ReleaseDetailWindowProps> = ({
           </p>
 
           {/* Audio preview controls bar */}
-          <div className="pt-2 flex items-center gap-3">
+          <div className="pt-2 flex flex-wrap items-center gap-2.5">
             <button
               onClick={() => onTogglePlay(release.id)}
               className="px-4 py-2 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 font-semibold text-xs flex items-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
@@ -159,6 +159,18 @@ export const ReleaseDetailWindow: React.FC<ReleaseDetailWindowProps> = ({
                 </>
               )}
             </button>
+
+            {release.youtubeUrl && (
+              <a
+                href={release.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/30 text-red-300 border border-red-500/30 font-semibold text-xs flex items-center gap-1.5 transition-all shadow-md active:scale-95 cursor-pointer"
+              >
+                <span>YouTube에서 듣기</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
 
             <button
               onClick={handleShare}

@@ -14,13 +14,11 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
   return (
     <div className="space-y-6">
       {/* 2-Column Split Section: Left (Photo) / Right (Top: Name & Role, Bottom: Description) */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-zinc-950/60 border border-white/10 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10 items-stretch">
+      <div className="p-5 sm:p-6 rounded-2xl bg-zinc-950/90 border border-white/10 relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 relative z-10 items-start">
           {/* [좌측 2분할]: 아티스트 사진 */}
-          <div className="md:col-span-4 lg:col-span-4 flex flex-col justify-center">
-            <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 group">
+          <div className="md:col-span-4 lg:col-span-4 flex flex-col items-center justify-start">
+            <div className="relative w-full max-w-sm aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-zinc-900 group">
               <img 
                 src={ASSETS.avatar} 
                 alt={ARTIST_PROFILE.stageName} 
@@ -35,7 +33,7 @@ export const AboutWindow: React.FC<AboutWindowProps> = () => {
           </div>
 
           {/* [우측 2분할]: 상단(이름 & 역할) / 하단(설명 & 해시태그) */}
-          <div className="md:col-span-8 lg:col-span-8 flex flex-col justify-between py-1 space-y-5">
+          <div className="md:col-span-8 lg:col-span-8 flex flex-col justify-start py-1 space-y-6">
             {/* 우측 상단: 이름과 역할 (Chuncheon 제거 -> Seoul, KR) */}
             <div className="space-y-2 pb-4 border-b border-white/10">
               <div className="flex items-center gap-2">
