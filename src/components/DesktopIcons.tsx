@@ -110,11 +110,11 @@ export const DesktopIcons: React.FC<DesktopIconsProps> = ({
 
     return (
       <div 
-        className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-9 xs:pt-12 sm:pt-16 flex flex-col items-center justify-start sm:justify-center"
+        className="w-full h-full overflow-y-auto custom-scrollbar px-4 pt-24 xs:pt-28 sm:pt-32 flex flex-col items-center justify-start sm:justify-center"
         style={{ paddingBottom: 'max(9rem, calc(8rem + env(safe-area-inset-bottom, 24px)))' }}
       >
-        {/* Balanced 5-App Cluster: Lowered slightly from top bar, perfectly clear of bottom dock */}
-        <div className="mt-2 xs:mt-3 sm:my-auto flex flex-col items-center gap-4 xs:gap-5 sm:gap-6 w-full max-w-[310px] sm:max-w-[360px]">
+        {/* Balanced 5-App Cluster: Lowered by ~1 app height, leaving comfortable space above the dock */}
+        <div className="mt-1 xs:mt-2 sm:my-auto flex flex-col items-center gap-4 xs:gap-5 sm:gap-6 w-full max-w-[310px] sm:max-w-[360px]">
           {/* Top Hero App: About (Liquid Glass Hero) */}
           <motion.button
             key={mobileTopApp.id}
